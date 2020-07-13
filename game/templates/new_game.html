@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block title %}Game List{% endblock %}
+{% block content %}
+
+
+<h1>Create a new Game!</h1>
+<p>Enter numbers and press <strong>Go ahead!</strong> to start the new game.</p>
+
+<form action="" method="post">
+    <label for="min_number">Min number:</label>
+    <input type="number" name="min_number" data-test="min_number">
+    <label for="max_number">Max number:</label>
+    <input type="number" name="max_number" data-test="max_number">
+    <input type="submit" value="Go ahead!" data-test="go_ahead">
+</form>
+
+
+{% endblock %}
