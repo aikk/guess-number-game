@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block title %}New Game{% endblock %}
+{% block content %}
+
+<h1>Game ID: {{game.id}}</h1>
+<p>Min number is - {{game.min_number}}</p>
+<p>Max number is - {{game.max_number}}</p>
+
+<br>
+<p>Return to the <a href="{% url 'current_game' %}">List of Current Games</a>.</p>
+{% endblock %}
