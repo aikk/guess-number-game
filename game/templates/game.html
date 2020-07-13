@@ -5,16 +5,13 @@
 
 <h1>Current Games:</h1>
 {% for game in games %}
-    <p data-test="current_game">Game ID: <a href="{#}">{{game.id}}</a>.
+    <p data-test="current_game">Game ID: <a href="{% url 'game_detail' game.id %}">{{game.id}}</a>.
         <br>Active(not finished): {{game.is_active}}.
         <br>Range: ({{game.min_number}}-{{game.max_number}})</p>
 {% endfor %}
 
 <br>
 <h1>Start a new game:</h1>
-<a data-test="new_game_link" href="{#}">Click me!</a>
+<a data-test="new_game_link" href="{% url 'new_game' %}">Click me!</a>
 
 {% endblock %}
-
-
-<!-- <a href="{% url 'game-detail' game.id %}" -->
