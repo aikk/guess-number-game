@@ -3,6 +3,14 @@ from .models import Game, Guess
 from random import randint
 
 
+class NumberTooHighException(Exception):
+    pass
+
+
+class NumberTooLowException(Exception):
+    pass
+
+
 def game(request):
     games = Game.objects.all()
     return render(request, 'game.html', {'games': games})
@@ -28,9 +36,11 @@ def game_detail(request, game_id):
     if request.method == 'POST':
         try:
             guess_value = int(request.POST['guess_number'])
-            make_guess(game.id, guess_value)
-        except:
+            make_guess(game, guess_value)
+        except ValueError:
             return redirect(reverse('error', args=['guess number type incorrect']), request)
+        except (NumberTooHighException, NumberTooLowException) as e:
+            return redirect(reverse('error', args=[str(e)]), request)
 
         if game.is_active and game.number == guess_value:
             game.is_active = False
@@ -38,9 +48,14 @@ def game_detail(request, game_id):
     return render(request, 'game_detail.html', {'game': game, 'guesses': guesses})
 
 
-def make_guess(game_id, number):
-    guess = Guess.objects.create(game_id=game_id, number=number)
-    return guess
+def make_guess(game, number):
+    if number > game.max_number:
+        raise NumberTooHighException('number too high')
+    elif number < game.min_number:
+        raise NumberTooLowException('number too low')
+    else:
+        guess = Guess.objects.create(game=game, number=number)
+        return guess
 
 
 def error(request, text):
