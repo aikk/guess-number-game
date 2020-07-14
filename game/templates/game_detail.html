@@ -5,6 +5,23 @@
 <h1>Game ID: {{game.id}}</h1>
 <p>Min number is - {{game.min_number}}</p>
 <p>Max number is - {{game.max_number}}</p>
+<p>Active(not finished) - {{game.is_active}}</p>
+<br>
+
+{% if game.is_active %}
+    <h2>Enter guess number</h2>
+    <form method="POST">
+        <label for="guess_number">Guess number:</label><br>
+        <input data-test="guess_number" type="number" id="guess_number" name="guess_number"><br>
+        <input data-test="submit" type="submit" id="submit" value="Make a guess">
+    </form>
+    {% elif not game.is_active %}
+    <h2 data-test="is_over">The game is over.</h2>
+    {% endif %}
+
+    {% for guess in guesses %}
+    <p>{{ guess.time }} --- {{ guess.number }}</p>
+    {% endfor %}
 
 <br>
 <p>Return to the <a href="{% url 'current_game' %}">List of Current Games</a>.</p>
