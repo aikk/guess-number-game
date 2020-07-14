@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block title %}Game List{% endblock %}
+{% block content %}
+
+<h5>Error {{ text }}</h5>
+<br>
+<p>Return to the <a href="{% url 'current_game' %}">List of Current Games</a>.</p>
+
+{% endblock %}
