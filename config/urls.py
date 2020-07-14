@@ -5,4 +5,5 @@ urlpatterns = [
     path('', views.game, name='current_game'),
     path('new_game/', views.new_game, name='new_game'),
     path('<int:game_id>/', views.game_detail, name='game_detail'),
+    path('error/<str:text>', views.error, name='error'),
 ]
