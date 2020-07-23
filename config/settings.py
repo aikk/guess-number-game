@@ -11,7 +11,9 @@ DATABASES = {
 
 
 INSTALLED_APPS = [
-    'game'
+    'game',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
 ]
 
 STATIC_URL = '/static/'
