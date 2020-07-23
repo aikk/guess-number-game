@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404, reverse
 from .models import Game, Guess
 from random import randint
+from .forms import UserForm
 
 
 class NumberTooHighException(Exception):
@@ -60,3 +61,17 @@ def make_guess(game, number):
 
 def error(request, text):
     return render(request, 'error.html', {'text': text})
+
+
+def register(request):
+    registered = False
+    if request.method == 'POST':
+        user_form = UserForm(data=request.POST)
+        user = user_form.save()
+        user.set_password(user.password)
+        user.save()
+        registered = True
+    else:
+        user_form = UserForm()
+
+    return render(request, 'register.html', {'user_form': user_form, 'registered': registered})
