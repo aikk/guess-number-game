@@ -7,6 +7,8 @@
     <title>{% block title %}{% endblock %}</title>
     </head>
 <body>
+    <p><a href="{% url 'register' %}">Sign up</a></p>
+    <hr>
     {% block content %}
     {% endblock %}
 </body>
