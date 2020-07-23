@@ -53,3 +53,38 @@ def test_guess_is_out_of_range(live_server, driver, default_games):
     element1 = driver.find_element_by_css_selector('[data-test="submit"]')
     element1.click()
     assert 'error' in driver.current_url
+
+
+# def test_game_detail_same_user_fail(live_server, driver, default_games, default_guesses, user_client):
+#     driver.get(live_server.url + '/game_detail/1')
+
+#     guess_number = driver.find_element_by_css_selector(
+#         '[data-test="guess_number"]')
+#     button_make_guess = driver.find_element_by_css_selector(
+#         '[data-test="submit"]')
+
+#     guess_number.send_keys(1)
+#     button_make_guess.click()
+#     assert 'game_detail' in driver.current_url
+
+#     guess_number = driver.find_element_by_css_selector(
+#         '[data-test="guess_number"]')
+#     button_make_guess = driver.find_element_by_css_selector(
+#         '[data-test="submit"]')
+
+#     guess_number.send_keys(1)
+#     button_make_guess.click()
+#     assert 'error' in driver.current_url
+
+
+# def test_auth_fail(live_server, driver):
+#     driver.get(live_server.url)
+
+#     username = driver.find_element_by_css_selector('[data-test="username"]')
+#     username.send_keys("user")
+#     password = driver.find_element_by_css_selector('[data-test="password"]')
+#     password.send_keys("pass")
+#     submit = driver.find_element_by_css_selector('[data-test="submit"]')
+#     submit.click()
+
+#     assert 'accounts/login/' in driver.current_url
